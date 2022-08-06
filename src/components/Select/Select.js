@@ -10,24 +10,29 @@ const Select = ({ label, value, onChange, children }) => {
 
   return (
     <Wrapper>
-      <Text>{displayedValue}</Text>
-      <Icon id="chevron-down" size={24} strokeWidth={2} />
-      <SelectStyled id="selectthing" value={value} onChange={onChange}>
+      <StyledSelect id="selectthing" value={value} onChange={onChange}>
         {children}
-      </SelectStyled>
+      </StyledSelect>
+      <Presentation>
+        <Text>{displayedValue}</Text>
+        <Icon id="chevron-down" size={24} strokeWidth={2} />
+      </Presentation>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
+  position: relative;
+  width: max-content;
+`;
+
+const Presentation = styled.div`
   background-color: ${COLORS.transparentGray15};
   border: none;
   padding: 12px 12px 12px 16px;
   border-radius: 8px;
   display: flex;
   align-items: center;
-  float: left;
-  position: relative;
   color: ${COLORS.gray700};
 
   &:focus {
@@ -41,17 +46,17 @@ const Wrapper = styled.div`
 
 const Text = styled.div`
   margin-right: 20px;
-  font: "Roboto" sans-serif;
+  font-family: "Roboto", sans-serif;
+  font-size: ${16 / 16}rem;
 `;
 
-const SelectStyled = styled.select`
+const StyledSelect = styled.select`
   opacity: 0;
   position: absolute;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
-  z-index: 1;
 `;
 
 export default Select;
